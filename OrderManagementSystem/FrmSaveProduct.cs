@@ -50,11 +50,11 @@ namespace OrderManagementSystem
             IProductsRepository productsRepository = new ProductsRepository();
             if (ProductId==-1)
             {
-                productsRepository.AddProduct(new Product {Name=txtProduct.Text,Price=(int)numPrice.Value,Quantity=(int)numQuantity.Value });
+                productsRepository.AddProduct(new Product {Name=txtProduct.Text,Price=(decimal)numPrice.Value,Quantity=(int)numQuantity.Value });
             }
             else
             {
-                productsRepository.EditProduct(new Product {Id=ProductId,Name=txtProduct.Text, Price = (int)numPrice.Value, Quantity = (int)numQuantity.Value });
+                productsRepository.EditProduct(new Product {Id=ProductId,Name=txtProduct.Text, Price = (decimal)numPrice.Value, Quantity = (int)numQuantity.Value });
             }
 
             ProductForm.RefreshProductTable();

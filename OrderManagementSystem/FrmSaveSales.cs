@@ -1,19 +1,8 @@
-﻿using ADO.NET_Helper;
-using OrderManagementSystem.Entities;
+﻿using OrderManagementSystem.Entities;
 using OrderManagementSystem.Repositories.Abstracts;
 using OrderManagementSystem.Repositories.Concrete;
 using OrderManagementSystem.Tools;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OrderManagementSystem
 {
@@ -25,8 +14,7 @@ namespace OrderManagementSystem
         }
 
         public int salesId { get; set; } = -1;
-
-        public int userId { get; set; } 
+        public int userId { get; set; }
         public FrmSales saleData { get; set; }
 
 
@@ -69,7 +57,6 @@ namespace OrderManagementSystem
             controlFiller.FillControlDataSource(cmbProducts, sqlDataReader, valueMember: "Id", displayMember: "Name");
 
             sqlConnection.Close();
-            // cmbProducts.SelectedIndex = 0;
 
         }
 

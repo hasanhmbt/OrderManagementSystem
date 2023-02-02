@@ -9,7 +9,7 @@ namespace OrderManagementSystem.Entities
     public class Product : BaseEntities
     {
 
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public int Quantity { get; set; }
         public DateTime AddDate { get; set; }
 

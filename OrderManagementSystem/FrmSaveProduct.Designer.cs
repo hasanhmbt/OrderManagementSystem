@@ -50,6 +50,11 @@
             // numPrice
             // 
             this.numPrice.Location = new System.Drawing.Point(26, 153);
+            this.numPrice.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
             this.numPrice.Name = "numPrice";
             this.numPrice.Size = new System.Drawing.Size(91, 27);
             this.numPrice.TabIndex = 1;

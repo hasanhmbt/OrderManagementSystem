@@ -23,9 +23,9 @@ namespace OrderManagementSystem
         {
             lblUserName.Text = UserData.Name;
             lblUsertype.Text = UserData.IsAdmin ? "Admin" : "Operator";
-            if (!UserData.IsAdmin) 
+            if (!UserData.IsAdmin)
             {
-             btnUsers.Enabled = false;
+                btnUsers.Enabled = false;
             }
         }
 
@@ -57,6 +57,7 @@ namespace OrderManagementSystem
         private void btnSales_Click(object sender, EventArgs e)
         {
             FrmSales frmSales = new FrmSales();
+            frmSales.userId = UserData.Id;
             frmSales.Show();
         }
 

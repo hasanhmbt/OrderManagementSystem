@@ -27,6 +27,7 @@ namespace OrderManagementSystem
         public int saleId { get; set; } = -1;
         public Product productData { get; set; }
 
+        public int userId { get; set; }
 
         private void FrmSales_Load(object sender, EventArgs e)
         {
@@ -52,7 +53,7 @@ namespace OrderManagementSystem
         {
             FrmSaveSales saveSales = new();
             saveSales.salesId = -1;
-            saveSales.userId = -1;
+            saveSales.userId = this.userId;
             saveSales.saleData = this;
             saveSales.Show();
 

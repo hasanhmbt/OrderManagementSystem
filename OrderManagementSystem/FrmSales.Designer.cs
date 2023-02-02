@@ -32,6 +32,7 @@
             this.tblSales = new System.Windows.Forms.DataGridView();
             this.brnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblSales)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,12 +78,24 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(22, 32);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 37);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Sales";
+            // 
             // FrmSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(833, 416);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.brnDelete);
             this.Controls.Add(this.tblSales);
@@ -94,6 +107,7 @@
             this.Load += new System.EventHandler(this.FrmSales_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tblSales)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -102,5 +116,6 @@
         private DataGridView tblSales;
         private Button brnDelete;
         private Button btnEdit;
+        private Label label3;
     }
 }

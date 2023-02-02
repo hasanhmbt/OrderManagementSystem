@@ -32,7 +32,7 @@ namespace OrderManagementSystem.Repositories.Concrete
             if (dataReader.Read())
             {
                 product.Name = Convert.ToString(dataReader["Name"]);
-                product.Price = Convert.ToInt32(dataReader["Price"]);
+                product.Price = Convert.ToDecimal(dataReader["Price"]);
                 product.Quantity = Convert.ToInt32(dataReader["Quantity"]);
 
                 connectionManager.CloseConnection(connection);
@@ -52,7 +52,7 @@ namespace OrderManagementSystem.Repositories.Concrete
 
             if (dataReader.Read())
             {
-                product.Price = Convert.ToInt32(dataReader["Price"]);
+                product.Price = Convert.ToDecimal(dataReader["Price"]);
 
                 connectionManager.CloseConnection(connection);
                 return product;
