@@ -77,10 +77,11 @@ namespace OrderManagementSystem.Repositories.Concrete
             {
                  new SqlParameter("@UserId", sale.UserId),
                  new SqlParameter("@ProductId", sale.ProductId),
-                 new SqlParameter("@SaleCount", sale.SaleCount)
+                 new SqlParameter("@SaleCount", sale.SaleCount),
+                 new SqlParameter("@TotalPrice", sale.TotalPrice)
 
             };
-            sqlHelper.ExecuteNonQuery(query: "insert into Sales(UserId,ProductId,SaleCount) values (@UserId,@ProductId,@SaleCount); ", parameters: parameters);
+            sqlHelper.ExecuteNonQuery(query: "insert into Sales(UserId,ProductId,SaleCount,TotalPrice ) values (@UserId,@ProductId,@SaleCount,@TotalPrice); ", parameters: parameters);
         }
         public void EditSale(Sale sale)
         {
@@ -91,10 +92,13 @@ namespace OrderManagementSystem.Repositories.Concrete
                 new SqlParameter("@Id", sale.Id),
                 new SqlParameter("@UserId", sale.UserId),
                 new SqlParameter("@ProductId", sale.ProductId),
-                new SqlParameter("@SaleCount", sale.SaleCount)
+                new SqlParameter("@SaleCount", sale.SaleCount),
+                new SqlParameter("@TotalPrice", sale.TotalPrice)
+
+
             };
 
-            sqlHelper.ExecuteNonQuery(query: $"Update Sales set @UserId=UserId  ,@ProductId=ProductId , SaleCount=@SaleCount  where Id=@Id", parameters: parameters);
+            sqlHelper.ExecuteNonQuery(query: $"Update Sales set @UserId=UserId  ,@ProductId=ProductId ,TotalPrice=@TotalPrice, SaleCount=@SaleCount  where Id=@Id", parameters: parameters);
         }
 
 

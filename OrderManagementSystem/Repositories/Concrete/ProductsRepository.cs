@@ -74,7 +74,7 @@ namespace OrderManagementSystem.Repositories.Concrete
             {
                 new SqlParameter("@Name",product.Name),
                 new SqlParameter("@Price",product.Price),
-                new SqlParameter("@Quantity",product.Quantity),
+                new SqlParameter("@Quantity",product.Quantity)
 
             };
 

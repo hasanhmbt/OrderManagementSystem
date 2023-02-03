@@ -63,15 +63,18 @@ namespace OrderManagementSystem
         private void btnSave_Click(object sender, EventArgs e)
         {
             ISaleRepositroy saleRepositroy = new SaleRepositroy();
-            Product product = new();
+
+            IProductsRepository productsRepository = new ProductsRepository();
+            Product productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
+            decimal total = productprice.Price * numCount.Value;
 
             if (salesId == -1)
             {
-                saleRepositroy.Addsale(new Sale { UserId = this.userId, ProductId = (int)cmbProducts.SelectedValue, SaleCount = Convert.ToInt32(numCount.Value) });
+                saleRepositroy.Addsale(new Sale { UserId = this.userId, ProductId = (int)cmbProducts.SelectedValue, TotalPrice = total, SaleCount = Convert.ToInt32(numCount.Value) });
             }
             else
             {
-                saleRepositroy.EditSale(new Sale { Id = salesId, UserId = this.userId, ProductId = (int)cmbProducts.SelectedValue, SaleCount = Convert.ToInt32(numCount.Value) });
+                saleRepositroy.EditSale(new Sale { Id = salesId, UserId = this.userId, TotalPrice = total, ProductId = (int)cmbProducts.SelectedValue, SaleCount = Convert.ToInt32(numCount.Value) });
             }
 
             saleData.RefreshSalesTable();

@@ -38,7 +38,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(406, 42);
+            this.btnSave.Location = new System.Drawing.Point(472, 38);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(106, 36);
             this.btnSave.TabIndex = 8;
@@ -55,12 +55,12 @@
             this.tblSales.RowHeadersWidth = 51;
             this.tblSales.RowTemplate.Height = 29;
             this.tblSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tblSales.Size = new System.Drawing.Size(834, 315);
+            this.tblSales.Size = new System.Drawing.Size(863, 342);
             this.tblSales.TabIndex = 10;
             // 
             // brnDelete
             // 
-            this.brnDelete.Location = new System.Drawing.Point(669, 42);
+            this.brnDelete.Location = new System.Drawing.Point(735, 38);
             this.brnDelete.Name = "brnDelete";
             this.brnDelete.Size = new System.Drawing.Size(106, 36);
             this.brnDelete.TabIndex = 11;
@@ -70,7 +70,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(539, 42);
+            this.btnEdit.Location = new System.Drawing.Point(605, 38);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(106, 36);
             this.btnEdit.TabIndex = 12;
@@ -94,7 +94,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
-            this.ClientSize = new System.Drawing.Size(833, 416);
+            this.ClientSize = new System.Drawing.Size(862, 443);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.brnDelete);
