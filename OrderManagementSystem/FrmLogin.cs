@@ -17,14 +17,13 @@ namespace OrderManagementSystem
 
         private void OrderManagementSystem_Load(object sender, EventArgs e)
         {
-            txtEmail.Text= "hasanhumbet2004@gmail.com";
-            txtPassword.Text = "12345";
+
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             IUserRepository userRepository = new UserRepository();
-            User user = userRepository.AuthenticateUser(txtEmail.Text,txtPassword.Text);
+            User user = userRepository.AuthenticateUser(txtEmail.Text, txtPassword.Text);
 
             if (user != null)
             {
@@ -48,32 +47,19 @@ namespace OrderManagementSystem
             else
             {
 
-                Directory.CreateDirectory("C:\\Users\\hasan\\Desktop\\log");
-                StreamWriter sw = new StreamWriter("C:\\Users\\hasan\\Desktop\\log\\log.txt");
-
-
-                string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-                string newDirectory = Path.Combine(currentDirectory, "Logs");
-                Directory.CreateDirectory(newDirectory + "\\Logs");
-
-                string seperator = new string('-', 60);
-
-                sw.WriteLine($"\n{seperator}\nEmail: {txtEmail.Text}\nDate:{DateTime.Now.ToString()}\n{seperator}\n");
-
-                sw.Close();
-
-
 
                 MessageBox.Show("Email or password is incorrect!", caption: "Login failed", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
             }
+            if (user != null)
+            {
 
-            
-            SqlHelper sqlHelper = new SqlHelper();
-            List<SqlParameter> parameters = new List<SqlParameter>
+                SqlHelper sqlHelper = new SqlHelper();
+                List<SqlParameter> parameters = new List<SqlParameter>
             {
                  new SqlParameter("@UserId", user.Id),
             };
-            sqlHelper.ExecuteNonQuery(query: " insert into LogTable(UserId) Values(@UserId); ", parameters: parameters);
+                sqlHelper.ExecuteNonQuery(query: " insert into LogTable(UserId) Values(@UserId); ", parameters: parameters);
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -81,6 +67,6 @@ namespace OrderManagementSystem
             txtPassword.UseSystemPasswordChar = !checkBoxPasswordShow.Checked;
         }
 
-      
+
     }
 }

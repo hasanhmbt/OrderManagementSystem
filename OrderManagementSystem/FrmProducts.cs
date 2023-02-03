@@ -72,6 +72,10 @@ namespace OrderManagementSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Are you sure to delete?", caption: "Attention", icon: MessageBoxIcon.Question, buttons: MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+
             if (tblProducts.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Select a product!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
@@ -84,12 +88,14 @@ namespace OrderManagementSystem
                 int id = Convert.ToInt32(row.Cells[0].Value);
                 selectedIds.Add(id);
             }
+            MessageBox.Show("Succesfully deleted!");
 
             IProductsRepository productsRepository = new ProductsRepository();
             productsRepository.DeleteProduct(selectedIds);
             RefreshProductTable();
+            }
         }
 
-        
+         
     }
 }

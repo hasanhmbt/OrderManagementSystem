@@ -90,6 +90,10 @@ namespace OrderManagementSystem
                 IProductsRepository productsRepository = new ProductsRepository();
                 Product productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
                 labelPrice.Text = productprice.Price.ToString();
+
+                 
+                decimal total = productprice.Price * numCount.Value;
+                labelTotal.Text = total.ToString();
             }
 
         }

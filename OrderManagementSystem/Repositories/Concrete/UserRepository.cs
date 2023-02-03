@@ -72,7 +72,7 @@ namespace OrderManagementSystem.Repositories.Concrete
         {
             SqlHelper sqlHelper = new SqlHelper();
 
-            SqlDataReader reader = sqlHelper.ExecuteReader(query: "select  Id, Name, Email, Password,IsAdmin,AddDate,Status  from Users ;", connection: out connection);
+            SqlDataReader reader = sqlHelper.ExecuteReader(query: "select  Id, Name, Email,IsAdmin,AddDate,Status  from Users ;", connection: out connection);
             return reader;
         }
 

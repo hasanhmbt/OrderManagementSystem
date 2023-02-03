@@ -106,7 +106,7 @@ namespace OrderManagementSystem.Repositories.Concrete
         {
             SqlHelper sqlHelper = new();
             string deleteIds = string.Join(",", productIds);
-            sqlHelper.ExecuteNonQuery(query: $"delete from Products where id={deleteIds}");
+            sqlHelper.ExecuteNonQuery(query: $"delete from Products where id in ({deleteIds})");
         }
 
     }

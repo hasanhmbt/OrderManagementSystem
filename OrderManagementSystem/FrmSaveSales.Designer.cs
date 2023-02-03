@@ -73,9 +73,9 @@
             this.labelPrice.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.labelPrice.Location = new System.Drawing.Point(95, 97);
             this.labelPrice.Name = "labelPrice";
-            this.labelPrice.Size = new System.Drawing.Size(59, 28);
+            this.labelPrice.Size = new System.Drawing.Size(24, 28);
             this.labelPrice.TabIndex = 7;
-            this.labelPrice.Text = "price";
+            this.labelPrice.Text = "0";
             // 
             // label1
             // 
@@ -106,9 +106,9 @@
             this.labelTotal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.labelTotal.Location = new System.Drawing.Point(91, 89);
             this.labelTotal.Name = "labelTotal";
-            this.labelTotal.Size = new System.Drawing.Size(59, 28);
+            this.labelTotal.Size = new System.Drawing.Size(24, 28);
             this.labelTotal.TabIndex = 10;
-            this.labelTotal.Text = "Total";
+            this.labelTotal.Text = "0";
             // 
             // numCount
             // 

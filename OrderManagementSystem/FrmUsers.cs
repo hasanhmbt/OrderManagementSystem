@@ -72,22 +72,29 @@ namespace OrderManagementSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (tblUsers.SelectedRows.Count == 0)
+          DialogResult result =  MessageBox.Show("Are you sure to delete?",caption: "Attention", icon:MessageBoxIcon.Question, buttons: MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Select a product!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
-                return;
-            }
-            List<int> selectedIds = new List<int>();
 
-            foreach (DataGridViewRow row in tblUsers.SelectedRows)
-            {
-                int id = Convert.ToInt32(row.Cells[0].Value);
-                selectedIds.Add(id);
-            }
 
-            IUserRepository userRepository = new UserRepository();
-            userRepository.DeleteUsers(selectedIds);
-            RefreshUserTable();
+                if (tblUsers.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Select a product!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+                    return;
+                }
+                List<int> selectedIds = new List<int>();
+
+                foreach (DataGridViewRow row in tblUsers.SelectedRows)
+                {
+                    int id = Convert.ToInt32(row.Cells[0].Value);
+                    selectedIds.Add(id);
+                }
+                MessageBox.Show("Succesfully deleted!");
+
+                IUserRepository userRepository = new UserRepository();
+                userRepository.DeleteUsers(selectedIds);
+                RefreshUserTable();
+            }
         }
 
         private void btnResetPassword_Click(object sender, EventArgs e)

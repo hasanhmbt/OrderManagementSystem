@@ -77,6 +77,10 @@ namespace OrderManagementSystem
 
         private void brnDelete_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Are you sure to delete?", caption: "Attention", icon: MessageBoxIcon.Question, buttons: MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+
             if (tblSales.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Select a item!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
@@ -89,10 +93,12 @@ namespace OrderManagementSystem
                 int id = Convert.ToInt32(row.Cells[0].Value);
                 selectedIds.Add(id);
             }
+            MessageBox.Show("Succesfully deleted!");
 
             ISaleRepositroy saleRepositroy = new SaleRepositroy();
             saleRepositroy.DeleteSale(selectedIds);
             RefreshSalesTable();
+            }
 
 
         }

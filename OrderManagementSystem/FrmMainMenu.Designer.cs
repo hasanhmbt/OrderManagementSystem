@@ -49,7 +49,7 @@
             this.btnUsers.BackColor = System.Drawing.Color.Teal;
             this.btnUsers.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnUsers.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUsers.Location = new System.Drawing.Point(-7, 186);
+            this.btnUsers.Location = new System.Drawing.Point(-7, 315);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(259, 53);
             this.btnUsers.TabIndex = 2;
@@ -75,7 +75,7 @@
             this.btnSales.BackColor = System.Drawing.Color.Teal;
             this.btnSales.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSales.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSales.Location = new System.Drawing.Point(-7, 245);
+            this.btnSales.Location = new System.Drawing.Point(-7, 191);
             this.btnSales.Name = "btnSales";
             this.btnSales.Size = new System.Drawing.Size(259, 53);
             this.btnSales.TabIndex = 4;
@@ -183,7 +183,7 @@
             this.btnReports.BackColor = System.Drawing.Color.Teal;
             this.btnReports.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnReports.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnReports.Location = new System.Drawing.Point(-7, 304);
+            this.btnReports.Location = new System.Drawing.Point(-7, 253);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(259, 53);
             this.btnReports.TabIndex = 8;
