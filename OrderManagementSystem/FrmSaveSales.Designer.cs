@@ -40,6 +40,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.labelRemainder = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numCount)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -71,7 +73,7 @@
             this.labelPrice.AutoSize = true;
             this.labelPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelPrice.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labelPrice.Location = new System.Drawing.Point(95, 97);
+            this.labelPrice.Location = new System.Drawing.Point(95, 99);
             this.labelPrice.Name = "labelPrice";
             this.labelPrice.Size = new System.Drawing.Size(24, 28);
             this.labelPrice.TabIndex = 7;
@@ -163,6 +165,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.labelRemainder);
+            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.cmbProducts);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.labelPrice);
@@ -172,6 +176,28 @@
             this.groupBox2.Size = new System.Drawing.Size(369, 141);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
+            // 
+            // labelRemainder
+            // 
+            this.labelRemainder.AutoSize = true;
+            this.labelRemainder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelRemainder.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelRemainder.Location = new System.Drawing.Point(299, 97);
+            this.labelRemainder.Name = "labelRemainder";
+            this.labelRemainder.Size = new System.Drawing.Size(24, 28);
+            this.labelRemainder.TabIndex = 13;
+            this.labelRemainder.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label12.Location = new System.Drawing.Point(169, 97);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(125, 28);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Remainder :";
             // 
             // FrmSaveSales
             // 
@@ -213,5 +239,7 @@
         private Button btnCancel;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
+        private Label labelRemainder;
+        private Label label12;
     }
 }

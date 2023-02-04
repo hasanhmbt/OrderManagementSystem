@@ -64,17 +64,15 @@ namespace OrderManagementSystem
         {
             ISaleRepositroy saleRepositroy = new SaleRepositroy();
 
-            IProductsRepository productsRepository = new ProductsRepository();
-            Product productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
-            decimal total = productprice.Price * numCount.Value;
+             
 
             if (salesId == -1)
             {
-                saleRepositroy.Addsale(new Sale { UserId = this.userId, ProductId = (int)cmbProducts.SelectedValue, TotalPrice = total, SaleCount = Convert.ToInt32(numCount.Value) });
+                saleRepositroy.Addsale(new Sale { UserId = this.userId, ProductId = (int)cmbProducts.SelectedValue, TotalPrice = Convert.ToDecimal(labelTotal.Text), SaleCount = Convert.ToInt32(numCount.Value) });
             }
             else
             {
-                saleRepositroy.EditSale(new Sale { Id = salesId, UserId = this.userId, TotalPrice = total, ProductId = (int)cmbProducts.SelectedValue, SaleCount = Convert.ToInt32(numCount.Value) });
+                saleRepositroy.EditSale(new Sale { Id = salesId, UserId = this.userId, TotalPrice = Convert.ToDecimal(labelTotal.Text), ProductId = (int)cmbProducts.SelectedValue, SaleCount = Convert.ToInt32(numCount.Value) });
             }
 
             saleData.RefreshSalesTable();
@@ -88,9 +86,9 @@ namespace OrderManagementSystem
             if (cmbProducts.SelectedIndex != 0)
             {
                 IProductsRepository productsRepository = new ProductsRepository();
-                Product productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
+                ProductModel productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
                 labelPrice.Text = productprice.Price.ToString();
-
+                labelRemainder.Text = productprice.Remainder.ToString();
                  
                 decimal total = productprice.Price * numCount.Value;
                 labelTotal.Text = total.ToString();
@@ -105,7 +103,7 @@ namespace OrderManagementSystem
             if (cmbProducts.SelectedIndex != 0)
             {
                 IProductsRepository productsRepository = new ProductsRepository();
-                Product productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
+                ProductModel productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
                 decimal total = productprice.Price * numCount.Value;
                 labelTotal.Text = total.ToString();
 

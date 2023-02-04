@@ -43,19 +43,20 @@ namespace OrderManagementSystem.Repositories.Concrete
             return null;
         }
 
-        public Product GetProductPrice(int id)
+        public ProductModel GetProductPrice(int id)
         {
-            Product product = new();
+            ProductModel productModel = new();
             SqlHelper sqlHelper = new();
             ConnectionManager connectionManager = new ConnectionManager();
-            SqlDataReader dataReader = sqlHelper.ExecuteReader(query: $"select  Price  from Products where id={id}", connection: out SqlConnection connection);
+            SqlDataReader dataReader = sqlHelper.ExecuteReader(query: $" select *from vw_ProductModel where id={id}", connection: out SqlConnection connection);
 
             if (dataReader.Read())
             {
-                product.Price = Convert.ToDecimal(dataReader["Price"]);
+                productModel.Price = Convert.ToDecimal(dataReader["Price"]);
+                productModel.Remainder = Convert.ToInt32(dataReader["Remainder"]);
 
                 connectionManager.CloseConnection(connection);
-                return product;
+                return productModel;
             }
             else
                 connectionManager.CloseConnection(connection);

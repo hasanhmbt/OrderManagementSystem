@@ -26,7 +26,6 @@ namespace OrderManagementSystem
 
         public int saleId { get; set; } = -1;
         public Product productData { get; set; }
-
         public int userId { get; set; }
 
         private void FrmSales_Load(object sender, EventArgs e)

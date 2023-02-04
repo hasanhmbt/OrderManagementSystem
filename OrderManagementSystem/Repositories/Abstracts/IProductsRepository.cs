@@ -12,7 +12,7 @@ namespace OrderManagementSystem.Repositories.Abstracts
     {
 
         public Product GetProductById(int id);
-        public Product GetProductPrice(int id);
+        public ProductModel GetProductPrice(int id);
 
         public SqlDataReader GetAllProducts(out SqlConnection sqlConnection, string filter = "");
 
