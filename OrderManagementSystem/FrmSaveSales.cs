@@ -97,6 +97,7 @@ namespace OrderManagementSystem
         }
 
 
+
         private void numCount_ValueChanged(object sender, EventArgs e)
         {
 
