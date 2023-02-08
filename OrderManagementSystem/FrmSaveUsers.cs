@@ -1,15 +1,7 @@
 ﻿using OrderManagementSystem.Entities;
 using OrderManagementSystem.Repositories.Abstracts;
 using OrderManagementSystem.Repositories.Concrete;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using OrderManagementSystem.Tools;
 
 namespace OrderManagementSystem
 {
@@ -45,10 +37,6 @@ namespace OrderManagementSystem
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -57,6 +45,10 @@ namespace OrderManagementSystem
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+             
             IUserRepository userRepository = new UserRepository();
 
             if (userId == -1)
@@ -70,8 +62,19 @@ namespace OrderManagementSystem
 
             usersForm.RefreshUserTable();
             this.Close();
+            }
+            catch (Exception ex)
+            {
+                CommonTools.LogException(ex, this.userId);
+                MessageBox.Show($"{ex}", caption: "Error", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+
+            }
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         
     }
 }

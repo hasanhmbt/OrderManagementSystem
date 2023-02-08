@@ -5,6 +5,9 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using ADO.NET_Helper;
+using System.Data.SqlClient;
+using OrderManagementSystem.Entities;
 
 namespace OrderManagementSystem.Tools
 {
@@ -46,5 +49,34 @@ namespace OrderManagementSystem.Tools
             }
 
         }
+
+
+        public static void LogException(Exception exception, int Id)
+        {
+
+            string currentDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            string newDirectory = Path.Combine(currentDirectory, "Logs");
+            Directory.CreateDirectory(newDirectory + "\\Logs");
+            StreamWriter streamWriter = new StreamWriter(newDirectory + "\\Logs\\Logs.txt", append: true);
+
+
+            User user = new();
+            SqlHelper sqlHelper = new();
+            SqlDataReader sqlDataReader = sqlHelper.ExecuteReader(query: $"select Id, name from Users where Id={Id}", connection: out SqlConnection connection);
+            if (sqlDataReader.Read())
+            {
+                user.Name = Convert.ToString(sqlDataReader["Name"]);
+            }
+
+
+            string seperator = new string('-', 150);
+            streamWriter.Write($"{Environment.NewLine}User:{user.Name}{Environment.NewLine}Time:{DateTime.Now.ToString("yyyy-MM-dd:HH-mm-ss")}{Environment.NewLine}{seperator}{Environment.NewLine}{exception.ToString()}{Environment.NewLine}{seperator}{Environment.NewLine}{Environment.NewLine}");
+            streamWriter.Close();
+
+        }
+
+
+
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using OrderManagementSystem.Entities;
 using OrderManagementSystem.Repositories.Abstracts;
 using OrderManagementSystem.Repositories.Concrete;
+using OrderManagementSystem.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +21,13 @@ namespace OrderManagementSystem
             InitializeComponent();
         }
         public int ProductId { get; set; }
+        public int userId { get; set; }
+
         public FrmProducts ProductForm { get; set; }
         private void FrmSaveProduct_Load(object sender, EventArgs e)
         {
 
-            if (ProductId==-1)
+            if (ProductId == -1)
             {
                 this.Text = "Add Product";
             }
@@ -34,7 +37,7 @@ namespace OrderManagementSystem
                 IProductsRepository productsRepository = new ProductsRepository();
                 Product product = productsRepository.GetProductById(ProductId);
 
-                if (product!=null)
+                if (product != null)
                 {
                     txtProduct.Text = product.Name;
                     numPrice.Value = product.Price;
@@ -46,19 +49,29 @@ namespace OrderManagementSystem
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-            IProductsRepository productsRepository = new ProductsRepository();
-            if (ProductId==-1)
+            try
             {
-                productsRepository.AddProduct(new Product {Name=txtProduct.Text,Price=(decimal)numPrice.Value,Quantity=(int)numQuantity.Value });
-            }
-            else
-            {
-                productsRepository.EditProduct(new Product {Id=ProductId,Name=txtProduct.Text, Price = (decimal)numPrice.Value, Quantity = (int)numQuantity.Value });
-            }
 
-            ProductForm.RefreshProductTable();
-            this.Close();
+
+                IProductsRepository productsRepository = new ProductsRepository();
+                if (ProductId == -1)
+                {
+                    productsRepository.AddProduct(new Product { Name = txtProduct.Text, Price = (decimal)numPrice.Value, Quantity = (int)numQuantity.Value });
+                }
+                else
+                {
+                    productsRepository.EditProduct(new Product { Id = ProductId, Name = txtProduct.Text, Price = (decimal)numPrice.Value, Quantity = (int)numQuantity.Value });
+                }
+
+                ProductForm.RefreshProductTable();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                CommonTools.LogException(ex, this.userId);
+                MessageBox.Show($"{ex}", caption: "Error", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+
+            }
 
         }
 

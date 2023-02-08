@@ -1,19 +1,8 @@
-﻿using ADO.NET_Helper;
-using Microsoft.SqlServer.Server;
-using OrderManagementSystem.Entities;
+﻿using OrderManagementSystem.Entities;
 using OrderManagementSystem.Repositories.Abstracts;
 using OrderManagementSystem.Repositories.Concrete;
 using OrderManagementSystem.Tools;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OrderManagementSystem
 {
@@ -50,55 +39,89 @@ namespace OrderManagementSystem
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            FrmSaveSales saveSales = new();
-            saveSales.salesId = -1;
-            saveSales.userId = this.userId;
-            saveSales.saleData = this;
-            saveSales.Show();
+            try
+            {
+
+
+                FrmSaveSales saveSales = new();
+                saveSales.salesId = -1;
+                saveSales.userId = this.userId;
+                saveSales.saleData = this;
+                saveSales.Show();
+
+            }
+            catch (Exception ex)
+            {
+                CommonTools.LogException(ex, this.userId);
+                MessageBox.Show($"{ex}", caption: "Error", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+
+            }
 
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            FrmSaveSales saveSales = new();
-            if (tblSales.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show("Select a sale!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
-                return;
+
+                FrmSaveSales saveSales = new();
+                if (tblSales.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Select a sale!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    saveSales.salesId = (int)tblSales.SelectedRows[0].Cells["Id"].Value;
+                    saveSales.saleData = this;
+                    saveSales.Show();
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                saveSales.salesId = (int)tblSales.SelectedRows[0].Cells["Id"].Value;
-                saveSales.saleData = this;
-                saveSales.Show();
+                CommonTools.LogException(ex, this.userId);
+                MessageBox.Show($"{ex}", caption: "Error", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+
             }
         }
 
         private void brnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure to delete?", caption: "Attention", icon: MessageBoxIcon.Question, buttons: MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            try
             {
 
-            if (tblSales.SelectedRows.Count == 0)
+
+                DialogResult result = MessageBox.Show("Are you sure to delete?", caption: "Attention", icon: MessageBoxIcon.Question, buttons: MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+
+                    if (tblSales.SelectedRows.Count == 0)
+                    {
+                        MessageBox.Show("Select a item!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+                        return;
+                    }
+                    List<int> selectedIds = new List<int>();
+
+                    foreach (DataGridViewRow row in tblSales.SelectedRows)
+                    {
+                        int id = Convert.ToInt32(row.Cells[0].Value);
+                        selectedIds.Add(id);
+                    }
+                    MessageBox.Show("Succesfully deleted!");
+
+                    ISaleRepositroy saleRepositroy = new SaleRepositroy();
+                    saleRepositroy.DeleteSale(selectedIds);
+                    RefreshSalesTable();
+                }
+
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Select a item!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
-                return;
-            }
-            List<int> selectedIds = new List<int>();
+                CommonTools.LogException(ex, this.userId);
+                MessageBox.Show($"{ex}", caption: "Error", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
 
-            foreach (DataGridViewRow row in tblSales.SelectedRows)
-            {
-                int id = Convert.ToInt32(row.Cells[0].Value);
-                selectedIds.Add(id);
             }
-            MessageBox.Show("Succesfully deleted!");
-
-            ISaleRepositroy saleRepositroy = new SaleRepositroy();
-            saleRepositroy.DeleteSale(selectedIds);
-            RefreshSalesTable();
-            }
-
 
         }
     }

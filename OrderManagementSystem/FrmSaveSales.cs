@@ -62,21 +62,35 @@ namespace OrderManagementSystem
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ISaleRepositroy saleRepositroy = new SaleRepositroy();
-
-             
-
-            if (salesId == -1)
+            try
             {
-                saleRepositroy.Addsale(new Sale { UserId = this.userId, ProductId = (int)cmbProducts.SelectedValue, TotalPrice = Convert.ToDecimal(labelTotal.Text), SaleCount = Convert.ToInt32(numCount.Value) });
+                if (Convert.ToInt32(labelRemainder.Text) > Convert.ToInt32(numCount.Value))
+                {
+                    ISaleRepositroy saleRepositroy = new SaleRepositroy();
+                    if (salesId == -1)
+                    {
+                        saleRepositroy.Addsale(new Sale { UserId = this.userId, ProductId = (int)cmbProducts.SelectedValue, TotalPrice = Convert.ToDecimal(labelTotal.Text), SaleCount = Convert.ToInt32(numCount.Value) });
+                    }
+                    else
+                    {
+                        saleRepositroy.EditSale(new Sale { Id = salesId, UserId = this.userId, TotalPrice = Convert.ToDecimal(labelTotal.Text), ProductId = (int)cmbProducts.SelectedValue, SaleCount = Convert.ToInt32(numCount.Value) });
+                    }
+                    saleData.RefreshSalesTable();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Enter a valid number!", caption: "Attention", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                saleRepositroy.EditSale(new Sale { Id = salesId, UserId = this.userId, TotalPrice = Convert.ToDecimal(labelTotal.Text), ProductId = (int)cmbProducts.SelectedValue, SaleCount = Convert.ToInt32(numCount.Value) });
+                CommonTools.LogException(ex, this.userId);
+                MessageBox.Show($"{ex}", caption: "Error", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+
             }
 
-            saleData.RefreshSalesTable();
-            this.Close();
         }
 
         private void cmbProducts_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,7 +103,7 @@ namespace OrderManagementSystem
                 ProductModel productprice = productsRepository.GetProductPrice(Convert.ToInt32(cmbProducts.SelectedValue));
                 labelPrice.Text = productprice.Price.ToString();
                 labelRemainder.Text = productprice.Remainder.ToString();
-                 
+
                 decimal total = productprice.Price * numCount.Value;
                 labelTotal.Text = total.ToString();
             }

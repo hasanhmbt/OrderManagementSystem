@@ -16,42 +16,53 @@ namespace OrderManagementSystem
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
             IUserRepository userRepository = new UserRepository();
             User user = userRepository.AuthenticateUser(txtEmail.Text, txtPassword.Text);
 
-            if (user != null)
+            try
             {
 
-
-                SqlHelper sqlHelper = new SqlHelper();
-                List<SqlParameter> parameters = new List<SqlParameter>
-            {
-                 new SqlParameter("@UserId", user.Id),
-            };
-                sqlHelper.ExecuteNonQuery(query: " insert into LogTable(UserId) Values(@UserId); ", parameters: parameters);
-
-
-                if (user.ChangePassword)
+                if (user != null)
                 {
-                    MessageBox.Show("You have to change your password", caption: "Attention", icon: MessageBoxIcon.Information, buttons: MessageBoxButtons.OK);
-                    FrmChangePassword frmChangePassword = new();
-                    frmChangePassword.UserForm = user;
-                    frmChangePassword.Show();
-                    this.Hide();
+
+
+                    SqlHelper sqlHelper = new SqlHelper();
+                    List<SqlParameter> parameters = new List<SqlParameter>
+                    {
+                        new SqlParameter("@UserId", user.Id),
+                    };
+                    sqlHelper.ExecuteNonQuery(query: " insert into LogTable(UserId) Values(@UserId); ", parameters: parameters);
+
+
+                    if (user.ChangePassword)
+                    {
+                        MessageBox.Show("You have to change your password", caption: "Attention", icon: MessageBoxIcon.Information, buttons: MessageBoxButtons.OK);
+                        FrmChangePassword frmChangePassword = new();
+                        frmChangePassword.UserForm = user;
+                        frmChangePassword.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        FrmMainMenu frmMainMenu = new FrmMainMenu();
+                        frmMainMenu.UserData = user;
+                        frmMainMenu.Show(this);
+                        this.Hide();
+                    }
                 }
                 else
                 {
-                    FrmMainMenu frmMainMenu = new FrmMainMenu();
-                    frmMainMenu.UserData = user;
-                    frmMainMenu.Show(this);
-                    this.Hide();
+
+                    MessageBox.Show("Email or password is incorrect!", caption: "Login failed", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
                 }
+
+
             }
-            else
+            catch (Exception ex)
             {
-
-
-                MessageBox.Show("Email or password is incorrect!", caption: "Login failed", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
+                CommonTools.LogException(ex, user.Id);
+                MessageBox.Show($"{ex}", caption: "Error", icon: MessageBoxIcon.Error, buttons: MessageBoxButtons.OK);
             }
 
         }
